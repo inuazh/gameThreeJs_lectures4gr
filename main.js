@@ -1,12 +1,12 @@
 let gameOver = false;
 let score = 0;
-let speed = 0.1;
+let speed = 0.1; 
 let speedIncrease = 0.0001; 
 const platformSize = 5; 
 const initialObstacleDistance = 20; 
 const obstacleSpacing = 10; 
 
-
+// Создание сцены, камеры и рендерера
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 5, 10); 
@@ -16,8 +16,8 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-
-const platformGeometry = new THREE.PlaneGeometry(platformSize * 2, 100); 
+// Создание платформы
+const platformGeometry = new THREE.PlaneGeometry(platformSize * 2, 100); // Увеличиваем длину платформы до 100
 const platformMaterial = new THREE.MeshBasicMaterial({ color: 0x333333, side: THREE.DoubleSide });
 const platform = new THREE.Mesh(platformGeometry, platformMaterial);
 platform.rotation.x = Math.PI / 2;
@@ -60,7 +60,7 @@ function checkCollision() {
 }
 
 
-let playerSpeed = 0.2; 
+let playerSpeed = 0.2; // Скорость движения игрока
 
 
 let moveLeft = false;
@@ -85,7 +85,7 @@ function animate() {
 
     speed += speedIncrease;
 
-    
+
     if (moveLeft) {
         player.position.x -= playerSpeed;
     }
@@ -93,7 +93,7 @@ function animate() {
         player.position.x += playerSpeed;
     }
 
-    
+ 
     if (player.position.x < -platformSize) {
         player.position.x = -platformSize;
     } else if (player.position.x > platformSize) {
@@ -112,7 +112,7 @@ document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowLeft') {
             moveLeft = true; 
         } else if (event.key === 'ArrowRight') {
-            moveRight = true; 
+            moveRight = true;
         }
     }
 });
@@ -126,6 +126,23 @@ document.addEventListener('keyup', (event) => {
             moveRight = false; 
         }
     }
+});
+
+// Добавление прослушивателей событий для мобильных кнопок
+document.getElementById('left-button').addEventListener('touchstart', () => {
+    moveLeft = true; 
+});
+
+document.getElementById('left-button').addEventListener('touchend', () => {
+    moveLeft = false; 
+});
+
+document.getElementById('right-button').addEventListener('touchstart', () => {
+    moveRight = true; 
+});
+
+document.getElementById('right-button').addEventListener('touchend', () => {
+    moveRight = false; 
 });
 
 

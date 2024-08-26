@@ -32,13 +32,39 @@
             font-size: 24px;
             color: white;
         }
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            pointer-events: none; 
+        }
+        .control-button {
+            width: 50px;
+            height: 50px;
+            margin: 0 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            color: black;
+            pointer-events: auto; /* перехват событий для кнопок */
+        }
     </style>
 </head>
 <body>
     <div id="game-over">Game Over</div>
     <div id="restart">Restart</div>
     <div id="score">Score: 0</div>
+
+    <!-- Мобильн -->
+    <div id="controls">
+        <div id="left-button" class="control-button">◀</div>
+        <div id="right-button" class="control-button">▶</div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="main.js"></script>
 </body>
 </html>
